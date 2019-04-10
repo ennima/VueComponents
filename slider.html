@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="es">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Vue Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="slider.css">
+  </head>
+  <body>
+    <input type="button" value="prev" onclick="app.move(-1)">
+    <input type="button" value="next" onclick="app.move(1)">
+    <div id="app">
+      <div class="slides">
+        <transition-group name="slide" mode="out-in" enter-class="slide-in" leave-class="slide-out" enter-active-class="animated slide-in-active" :leave-active-class="slider_direction">
+          <div class="cochi" v-for="index in slides" v-if="index == active" :key="index">
+            <card v-for="slide_item in active_items" :title="slide_items[slide_item].title" :im="slide_items[slide_item].img" :desc="slide_items[slide_item].description" inline-template>
+              <div class="card">
+                <h2>{{title}}</h2><img :src="im" width="50">
+                <p>{{desc}}</p>
+              </div>
+            </card>
+          </div>
+        </transition-group>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.5/vue.js"></script>
+    <script src="in-component.js"></script>
+    <script src="slider.js"></script>
+  </body>
+</html>
